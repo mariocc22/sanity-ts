@@ -10,12 +10,21 @@ async function getPosts() {
     slug,
     publishedAt,
     excerpt,
-    body
+    _id,
+    body,
+    tags[]->{
+      _id,
+      slug,
+      name
+    }
+
   }
   `;
   const data = await client.fetch(query);
   return data;
 }
+
+export const revalidate = 60; //this is mean that every 60 seconds we will revalidate the data, because of the cache that we set in the server side by nextjs
 
 export default async function Home() {
   const posts: Post[] = await getPosts(); //this is where we get the data from sanity
