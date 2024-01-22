@@ -4,6 +4,7 @@ import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 import React from "react";
 
+// in this query we add a new query to get the number of posts based on the tag, and this will also need the "references" and reference the tags and the tag id from the current tag, the "^" is like a this keyword, so it will reference the current tag id, and then we just count the number of posts that have this tag id.
 async function getAllTags() {
   const query = `
   *[_type == "tag"] {
